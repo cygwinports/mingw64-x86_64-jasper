@@ -1,8 +1,8 @@
 CROSS_HOST="x86_64-w64-mingw32"
-inherit cross
+inherit cross cmake
 
 NAME="mingw64-x86_64-jasper"
-VERSION=1.900.13
+VERSION=2.0.12
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="JPEG 2000 library for Win64 toolchain"
@@ -15,13 +15,13 @@ SRC_URI="http://www.ece.uvic.ca/~frodo/jasper/software/jasper-${VERSION}.tar.gz"
 SRC_DIR="jasper-${VERSION}"
 PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/jasper.git/plain/jasper-1.900.1-CVE-2008-3520.patch
-	http://pkgs.fedoraproject.org/cgit/jasper.git/plain/jasper-1.900.13-CVE-2016-9583.patch?h=f25
-	1.900.1-no-undefined.patch
+	2.0.12-disable-apps.patch
+	2.0.12-implicit-decls.patch
 "
 
-DIFF_EXCLUDES="jas_config.h"
-
-CYGCONF_ARGS="--disable-opengl"
-MAKEOPTS+=" bin_PROGRAMS= man_MANS= "
-
-KEEP_LA_FILES="none"
+CYGCMAKE_ARGS="
+	-DCMAKE_INSTALL_DOCDIR=/usr/share/doc/${NAME}
+	-DJAS_ENABLE_APPS=OFF
+	-DJAS_ENABLE_DOC=OFF
+	-DJAS_ENABLE_OPENGL=OFF
+"

@@ -1,0 +1,13 @@
+src/libjasper/jp2/jp2_enc.c:132:3: warning: implicit declaration of
+function ‘jas_eprintf’ [-Wimplicit-function-declaration]
+
+--- origsrc/jasper-2.0.12/src/libjasper/jp2/jp2_enc.c	2017-03-02 12:03:10.000000000 -0600
++++ src/jasper-2.0.12/src/libjasper/jp2/jp2_enc.c	2017-05-03 17:21:31.985102600 -0500
+@@ -72,6 +72,7 @@
+ \******************************************************************************/
+ 
+ #include <assert.h>
++#include "jasper/jas_debug.h"
+ #include "jasper/jas_malloc.h"
+ #include "jasper/jas_image.h"
+ #include "jasper/jas_stream.h"
